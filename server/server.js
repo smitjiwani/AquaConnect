@@ -5,7 +5,10 @@ import cors from 'cors'
 // import swaggerUI from 'swagger-ui-express'
 // import swaggerJSDoc from 'swagger-jsdoc'
 
-// import auth from "./authentication/auth.js"
+import auth from "./Auth/auth.js"
+import user from "./User/routes.js"
+import ngo from "./Ngo/routes.js"
+import issue from "./Issue/routes.js"
 
 const PORT = process.env.PORT || 5000
 
@@ -20,7 +23,10 @@ app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`)
 })
 
-// app.use('/api/auth', auth)
+app.use('/api/auth', auth)
+app.use('/api/user', user)
+app.use('/api/ngo', ngo)
+app.use('/api/issue', issue)
 
 app.get('/', (req, res) => {
   res.send('Hello from homepage')

@@ -1,5 +1,21 @@
-import knex from 'knex';
-import knexfile from './knexfile.cjs';
+import knex from "knex";
 
-const db = knex(knexfile.development);
-export default db;
+export default knex({
+    client: 'postgres',
+    connection: {
+        host: "db",
+        user: "username",
+        password: "password",
+        database: "username",
+    },
+    migrations: {
+        directory: "./migration",
+    },
+    seeds: {
+        directory: "./seeds",
+    },
+    pool: {
+        min: 2,
+        max: 10,
+    },
+

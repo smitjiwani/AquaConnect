@@ -1,8 +1,11 @@
 import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
 
+const ngoID = uuidv4()
+
 const seed = async () => {
   try {
+
     // Insert gp_head table
     const gpId = uuidv4()
     await db('gp_head').insert({
@@ -35,7 +38,7 @@ const seed = async () => {
 
     // Insert into issues_table table
     await db('issue_status').insert({
-      ngo_id: ngoid,
+      ngo_id: ngoid
       status: `Pending`,
       ngo_officer: 'sherkhan',
     })

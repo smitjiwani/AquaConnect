@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import db from '../db.js';
+import db from '../db/db.js';
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
