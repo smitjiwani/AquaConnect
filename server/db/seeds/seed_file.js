@@ -16,12 +16,11 @@ const seed = async () => {
     })
     console.log('Added sample gp head')
 
-    
     // Insert into ngo table
     await db('ngo').insert({
       ngo_id: uuidv4(),
       ngo_name: 'aga khan foundation',
-      ngo_type : 'jal jeevan mission',
+      ngo_type: 'jal jeevan mission',
       ngo_address: 'bihar',
       email_id: 'ngo@gmail.com',
       password: 'password1',
@@ -29,7 +28,7 @@ const seed = async () => {
       member_name: 'shambhulal',
       contact_no: '1234567890',
     })
-    
+
     console.log('Added sample ngo')
 
     // Insert into issues_table table
@@ -37,7 +36,7 @@ const seed = async () => {
       status: `Pending`,
       ngo_officer: 'sherkhan',
     })
-    
+
     console.log('Added sample issue !')
 
     process.exit(0)

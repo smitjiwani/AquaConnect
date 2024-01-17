@@ -1,14 +1,14 @@
 import React from 'react'
 import './styles/WaterRequest.css'
 
-const WaterRequest = () => {
+const WaterRequest = (props) => {
   return (
     <div className='card'>
     <div className='requestCard'>
-        <h2>Location: </h2>
-        <p>For People: </p>
-        <span>By: User_Name</span>
-        <span>Status: Pending</span>
+        <h2>Location: {props.location}</h2>
+        <p>For People: {props.userCount}</p>
+        <span>By: {props.username}</span>
+        <span>Status: {props.status}</span>
     </div>
     
     </div>

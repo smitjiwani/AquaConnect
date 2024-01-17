@@ -8,14 +8,14 @@ router.get('/login', (req, res) => {
 
 router.post('/register', async (req, res) => {
 
-  const { username, email, password, role, phone } = req.body;
+  const { username, email, password, role, phone, address, location } = req.body;
 
   try {
     let user;
     if (role === 'user') {
-      user = await db('users').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('users').insert({name: username, email: email, password: password, phone: phone, location:location, address: address}).returning('*');
     } else if (role === 'ngo') {
-      user = await db('ngos').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('ngos').insert({name: username, email: email, password: password, phone: phone, location:location, address: address}).returning('*');
     }
     console.log(user)
     res.json({
