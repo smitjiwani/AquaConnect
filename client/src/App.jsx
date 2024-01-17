@@ -9,7 +9,8 @@ function App() {
 
   return (
     <>
-      <Login  />
+      {/* <Login  /> */}
+      <Dashboard />
     </>
   )
 }
