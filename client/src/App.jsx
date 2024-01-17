@@ -8,9 +8,9 @@ function App() {
   const loggedIn = true;
 
   return (
-    <>
-      {/* <Login  /> */}
-      <Dashboard />
+    <> 
+      <Login  />
+      {/* <Dashboard /> */}
     </>
   )
 }

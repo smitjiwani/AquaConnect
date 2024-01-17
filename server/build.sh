@@ -7,7 +7,7 @@
 docker exec -it server npx knex migrate:latest --knexfile db/knexfile.cjs 
 
 docker compose up -d --build
-sleep 2
+
 # docker exec -it server npx knex migrate:latest --knexfile db/knexfile.cjs 
 docker exec -it server npm run migrate
 docker exec -it server npm run seed

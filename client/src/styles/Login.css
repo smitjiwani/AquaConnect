@@ -9,7 +9,7 @@
 
 .loginBox {
     background-color: white;
-    width: 20rem;
+    width: 24rem;
     height: 30rem;
     border-radius: 1.2rem;
     text-align: left;
@@ -33,7 +33,7 @@
 .rememberBox {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .loginButton {
@@ -41,6 +41,10 @@
     height: 2rem;
     border-radius: 2rem;
     background-color: rgb(101, 219, 101);
+}
+
+.loginButton :hover{
+    background-color: rgb(7, 60, 7);
 }
 
 .buttonContainer {
@@ -58,7 +62,9 @@
 h2{
     padding: 2rem 0 2rem 0;
 }
+
 input {
+    border: 0.1rem solid black;
     border-radius: 0.5rem;
     padding: 0.2rem;
 }
