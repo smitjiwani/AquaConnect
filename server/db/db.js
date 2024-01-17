@@ -18,4 +18,4 @@ export default knex({
         min: 2,
         max: 10,
     },
-
+});

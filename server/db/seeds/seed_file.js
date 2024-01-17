@@ -8,7 +8,7 @@ const seed = async () => {
 
     // Insert gp_head table
     const gpId = uuidv4()
-    await db('gp_head').insert({
+    await db('user').insert({
       gp_id: gpId,
       village_name: 'dhanushkodi',
       village_address: 'bihar',
@@ -22,7 +22,7 @@ const seed = async () => {
 
     // Insert into ngo table
     const ngoid = uuidv4();
-    await db('ngo').insert({
+    await db('ngos').insert({
       ngo_id: ngoid,
       ngo_name: 'aga khan foundation',
       ngo_type: 'jal jeevan mission',
@@ -38,7 +38,8 @@ const seed = async () => {
 
     // Insert into issues_table table
     await db('issue_status').insert({
-      ngo_id: ngoid
+      ngo_id: ngoid,
+      issue_id: uuidv4(),
       status: `Pending`,
       ngo_officer: 'sherkhan',
     })
