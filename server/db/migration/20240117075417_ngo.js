@@ -4,7 +4,7 @@ import db from '../db.js'
     try {
       await db.schema.dropTableIfExists('ngo')
       await db.schema.withSchema('public').createTable('ngo', (table) => {
-        table.increments('ngo_id').primary()
+        table.uuid('ngo_id').primary()
         table.string('ngo_name').notNullable()
         table.string('ngo_type').notNullable()
         table.string('ngo_address').notNullable().unique()

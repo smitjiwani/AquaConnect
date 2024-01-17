@@ -5,7 +5,7 @@ import db from '../db.js'
     await db.schema
       .withSchema('public')
       .createTable('issue_status', (table) => {
-        table.increments('id').unique().notNullable()
+        table.uuid('ngo_id').unique().notNullable()
         table
           .string('status')
           .notNullable()

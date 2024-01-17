@@ -5,7 +5,7 @@ import db from '../db.js'
     try {
       await db.schema.dropTableIfExists('gp_head')
       await db.schema.withSchema('public').createTable('gp_head', (table) => {
-        table.increments('gp_id').primary()
+        table.uuid('gp_id').primary()
         table.string('village_name').notNullable()
         table.string('village_address').notNullable()
         table.string('contact_no').notNullable().unique()
