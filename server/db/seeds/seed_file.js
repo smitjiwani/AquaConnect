@@ -2,12 +2,13 @@ import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
 
 const ngoID = uuidv4()
+const userID = uuidv4()
 
 const seed = async () => {
   try {
     // Insert gp_head table
     await db('users').insert({
-      gp_id: uuidv4(),
+      user_id: userID,
       village_name: 'dhanushkodi',
       village_address: 'bihar',
       contact_no: '1234567890',
@@ -43,15 +44,15 @@ const seed = async () => {
     console.log('Added sample issue !')
 
     // Insert into requests table
-    const request_id = uuidv4()
     await db('requests').insert({
-      request_id: request_id,
+      req_id: uuidv4(),
       n_people: 30,
-      village_address: 'bihar',
+      ngo_id: ngoID,
+      user_id: userID,
       status: `Pending`,
       username: 'username',
     })
-    console.log('Added sample issue !')
+    console.log('Added sample request !')
     process.exit(0)
   } catch (err) {
     console.log(err)

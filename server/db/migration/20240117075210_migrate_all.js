@@ -9,7 +9,7 @@ const dropAndCreateTables = async () => {
     
 
     await db.schema.withSchema('public').createTable('users', (table) => {
-      table.uuid('gp_id').primary()
+      table.uuid('user_id').primary()
       table.string('village_name').notNullable()
       table.string('village_address').unique()
       table.string('contact_no').notNullable().unique()
@@ -45,12 +45,14 @@ const dropAndCreateTables = async () => {
       })
 
     await db.schema.withSchema('public').createTable('requests', (table) => {
-      table.uuid('request_id').primary()
+      table.uuid('req_id').primary()
       table.integer('n_people').notNullable()
-      table.string('village_address').unique()
+      table.string('user_id')
+      table.string('ngo_id')
       table.string('status').notNullable()
       table.string('username').notNullable()
-      table.foreign('village_address').references('users.village_address').onDelete('cascade')
+      table.foreign('user_id').references('users.user_id')
+      table.foreign('ngo_id').references('ngos.ngo_id')
       table.timestamps(true, true)
     })
     console.log('Tables dropped and created successfully!')
