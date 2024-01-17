@@ -42,7 +42,7 @@ const seed = async () => {
     })
     console.log('Added sample issue !')
 
-    // Insert into issues_table table
+    // Insert into requests table
     const request_id = uuidv4()
     await db('requests').insert({
       request_id: request_id,
