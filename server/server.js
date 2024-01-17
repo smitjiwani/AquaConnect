@@ -2,7 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import requests from './Requests/routes.js'
+//import requests from './Requests/routes.js'
 
 // import swaggerUI from 'swagger-ui-express'
 // import swaggerJSDoc from 'swagger-jsdoc'
