@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Dashboard from './pages/Dashboard';
+import UserDashboard from './pages/UserDashboard';
 import Login from './pages/Login';
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
 
   return (
     <> 
-      <Login  />
-      {/* <Dashboard /> */}
+      {/* <Login  /> */}
+      {<UserDashboard /> }
     </>
   )
 }
