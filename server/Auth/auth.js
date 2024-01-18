@@ -1,6 +1,9 @@
 import { Router } from 'express';
 const router = Router();
 import db from '../db/db.js';
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = "5f4b50a65065027be65580a99edcfdafcf432098e88b4bed93073db34bcb18d5"
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
@@ -9,6 +12,7 @@ router.get('/login', (req, res) => {
 router.post('/register', async (req, res) => {
 
   const { username, email, password, role, phone, address } = req.body;
+  console.log(process.env.JWT_SECRET)
 
   try {
     let user;
@@ -18,13 +22,12 @@ router.post('/register', async (req, res) => {
       user = await db('ngos').insert({ username: username, email: email, password: password, phone: phone, address: address }).returning('*');
     }
     console.log(user)
-    res.json({
-      id: user.id,
-      email: user.email,
-      role: role,
+    
+    const authtoken = jwt.sign({user: user}, JWT_SECRET)
+    res.status(201).json({
+      authtoken: authtoken,
       status: 'success'
     });
-    res.status(201).json({ message: 'User created' });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ error: 'Server error' });
@@ -43,11 +46,10 @@ router.post('/login', async (req, res) => {
     }
     console.log(user)
 
+    const authtoken = jwt.sign({user: user}, JWT_SECRET)
     if (user && user.password === password) {
       res.status(200).json({
-        id: user.id,
-        email: user.email,
-        role: role,
+        authtoken: authtoken,
         status: 'success'
       });
     } else {

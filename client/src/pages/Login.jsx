@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login() {
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"))
+        // console.log(user)
+        if (user) {
+            navigate("/")
+        }
+  }, [])
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [role, setRole] = useState({ user: false, ngo: false })
+  const [role, setRole] = useState({ user: true, ngo: false })
 
   const navigate = useNavigate()
 
@@ -22,20 +33,32 @@ function Login() {
       body: JSON.stringify(data)
     }).then(res => res.json());
 
-    const user = {
-      authtoken: response.authtoken,
-      role: role
-    }
 
     if (response.status === 'success') {
-      if (role.ngo) {
-        navigate("/dashboard")
-      } else {
-        navigate("/userDashboard")
-      }
+      localStorage.setItem("user", JSON.stringify({ authtoken: response.authtoken, role: data.role }))
+      toast.success('You are successfully logged in!', {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        navigate("/")
+      }, 2000);
     } else {
+      toast.error(response.error, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
       console.log(response);
-      navigate("/");
     }
   };
 
@@ -56,6 +79,17 @@ function Login() {
 
   return (
     <section className='loginPage'>
+      <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
       <div className='loginBox'>
         <h2>
           Sign in to your account
