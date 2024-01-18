@@ -11,6 +11,7 @@ const userID2 = uuidv4()
 const userID3 = uuidv4()
 const userID4 = uuidv4()
 const userID5 = uuidv4()
+const officerID1 = uuidv4()
 
 const seed = async () => {
   try {
@@ -18,8 +19,8 @@ const seed = async () => {
     await db('users').insert({
       user_id: userID1,
       village_name: 'dhanushkodi',
-      village_address: 'sangli',
-      contact_no: '1234567890',
+      address: 'sangli',
+      phone: '1234567890',
       email_id: 'user1@gmail.com',
       password: '1',
       role: 'user',
@@ -29,7 +30,7 @@ const seed = async () => {
       user_id: userID2,
       village_name: 'bimbal',
       village_address: 'nashik',
-      contact_no: '1234567891',
+      phone: '1234567891',
       email_id: 'user2@gmail.com',
       password: '2',
       role: 'user',
@@ -39,7 +40,7 @@ const seed = async () => {
       user_id: userID3,
       village_name: 'ayugya',
       village_address: 'pune',
-      contact_no: '1234567892',
+      phone: '1234567892',
       email_id: 'user3@gmail.com',
       password: '3',
       role: 'user',
@@ -49,7 +50,7 @@ const seed = async () => {
       user_id: userID4,
       village_name: 'pinchkoli',
       village_address: 'solapur',
-      contact_no: '1234567893',
+      phone: '1234567893',
       email_id: 'user4@gmail.com',
       password: '4',
       role: 'user',
@@ -59,7 +60,7 @@ const seed = async () => {
       user_id: userID5,
       village_name: 'sitarampur',
       village_address: 'aurangabad',
-      contact_no: '1234567894',
+      phone: '1234567894',
       email_id: 'user5@gmail.com',
       password: '5',
       role: 'user',
@@ -77,7 +78,7 @@ const seed = async () => {
       password: '1',
       role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567890',
+      phone: '1234567890',
     })
     await db('ngos').insert({
       ngo_id: ngoID2,
@@ -88,7 +89,7 @@ const seed = async () => {
       password: '2',
       role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567891',
+      phone: '1234567891',
     })
     await db('ngos').insert({
       ngo_id: ngoID3,
@@ -99,7 +100,7 @@ const seed = async () => {
       password: '3',
       role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567892',
+      phone: '1234567892',
     })
     await db('ngos').insert({
       ngo_id: ngoID4,
@@ -110,7 +111,7 @@ const seed = async () => {
       password: '4',
       role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567893',
+      phone: '1234567893',
     })
     await db('ngos').insert({
       ngo_id: ngoID5,
@@ -121,7 +122,7 @@ const seed = async () => {
       password: '5',
       role: 'NGO',
       member_name: 'shambhulal',
-      contact_no: '1234567894',
+      phone: '1234567894',
     })
     console.log('Added sample ngo')
 
@@ -135,12 +136,21 @@ const seed = async () => {
     })
     console.log('Added sample issue !')
 
+    await db('verification_officer').insert({
+      officer_id: officerID1,
+      username: 'max payne',
+      email: 'officer1@gmail.com',
+      password: '1',
+    })
+    console.log('Added sample verification officers !')
+
     // Insert into requests table
     await db('requests').insert({
       req_id: uuidv4(),
       n_people: 30,
       ngo_id: ngoID1,
       user_id: userID1,
+      officer_id: officerID1,
       status: `pending`,
       username: 'username',
     })

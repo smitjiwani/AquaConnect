@@ -6,6 +6,7 @@ const dropAndCreateTables = async () => {
     await db.schema.dropTableIfExists('issue_status')
     await db.schema.dropTableIfExists('users')
     await db.schema.dropTableIfExists('ngos')
+    await db.schema.dropTableIfExists('verification_officer')
 
     await db.schema.withSchema('public').createTable('users', (table) => {
       table.uuid('user_id').primary().defaultTo(db.fn.uuid())
