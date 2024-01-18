@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom"
 
 function Signup() {
 
-    // const [credentials, setCredentials] = useState({name: "", email: "", phone: "", password: "", cpassword: "" });
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -22,12 +20,11 @@ function Signup() {
         e.preventDefault()
 
         try {
-
-            if (password != confirmPassword) {
+            if (password !== confirmPassword) {
                 throw new Error("Confirm password does not match password")
             }
 
-            const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user'), phone: phone, username: name }
+            const data = { email, password, role: role.ngo ? 'ngo' : 'user', phone, username: name, address: district }
 
             let res = await fetch(`http://localhost:5000/api/auth/register`, {
                 method: 'POST',
@@ -39,7 +36,6 @@ function Signup() {
 
             let response = await res.json();
 
-            
             const user = {
                 authtoken: response.authtoken,
                 role: role
@@ -49,19 +45,22 @@ function Signup() {
             setPassword('')
 
             if (response.success) {
-                console.log(response)
                 localStorage.setItem(user)
-                navigate("/")
-            }
-            else {
+                if (response.success) {
+                    localStorage.setItem(user)
+                    if (role.user) {
+                        navigate("/userDashboard")
+                    } else if (role.ngo) {
+                        navigate("/dashboard")
+                    }
+                } else {
                 console.log(response)
+                }
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error.message)
         }
     }
-
 
     const handleChange = (e) => {
         if (e.target.name == 'email') {

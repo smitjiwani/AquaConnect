@@ -28,7 +28,6 @@ function Login() {
     }
 
     if (response.status === 'success') {
-      localStorage.setItem(user)
       if (role.ngo) {
         navigate("/dashboard")
       } else {

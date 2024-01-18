@@ -1,8 +1,6 @@
 import { Router } from 'express';
 const router = Router();
 import db from '../db/db.js';
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
@@ -14,21 +12,18 @@ router.post('/register', async (req, res) => {
 
   try {
     let user;
-    let success = true;
-
-    const salt = await bcrypt.genSalt(10);
-    const secPass = await bcrypt.hash(password, salt);
-
     if (role === 'user') {
-      user = await db('users').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
+      user = await db('users').insert({ username: username, email: email, password: password, phone: phone, address: address }).returning('*');
     } else if (role === 'ngo') {
-      user = await db('ngos').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
+      user = await db('ngos').insert({ username: username, email: email, password: password, phone: phone, address: address }).returning('*');
     }
     console.log(user)
-
-    const authtoken = jwt.sign(user, process.env.JWT_SECRET)
-
-    res.json({success, authtoken});
+    res.json({
+      id: user.id,
+      email: user.email,
+      role: role,
+      status: 'success'
+    });
     res.status(201).json({ message: 'User created' });
   } catch (error) {
     console.error('Registration error:', error);
@@ -41,19 +36,20 @@ router.post('/login', async (req, res) => {
 
   try {
     let user;
-    let success = false
     if (role === 'user') {
       user = await db('users').where({ email: email }).first();
     } else if (role === 'ngo') {
       user = await db('ngos').where({ email: email }).first();
     }
+    console.log(user)
 
-    const passwordCompare = await bcrypt.compare(password, user.password);
-
-    if (user && passwordCompare) {
-      const authtoken = jwt.sign(user, process.env.JWT_SECRET)
-      success = true
-      res.status(200).json({success, authtoken});
+    if (user && user.password === password) {
+      res.status(200).json({
+        id: user.id,
+        email: user.email,
+        role: role,
+        status: 'success'
+      });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }

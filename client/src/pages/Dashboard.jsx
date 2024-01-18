@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import WaterRequest from '../components/WaterRequest'
 
 
@@ -23,7 +23,7 @@ function Dashboard() {
   }, [])
 
   return (
-    <div className=''>
+    <div className='Dashboard'>
       <h1>Dashboard</h1>
 
       <div className=''>
