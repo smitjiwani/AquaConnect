@@ -4,14 +4,20 @@ import Dashboard from './pages/Dashboard';
 import UserDashboard from './pages/UserDashboard';
 import Login from './pages/Login';
 
-function App() {
+import {Routes, Route} from 'react-router-dom'
+import Home from './pages/Home';
+import Signup from './pages/Signup';
 
-  const loggedIn = true;
+function App() {
 
   return (
     <> 
-      {/* <Login  /> */}
-      {<UserDashboard /> }
+    <Routes >
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/userDashboard" element={<UserDashboard />} />
+    </Routes>
     </>
   )
 }

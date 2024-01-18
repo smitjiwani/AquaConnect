@@ -1,51 +1,56 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
 
 function Login() {
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState({ user: false, ngo: false })
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     console.log(email, password, role);
 
+    const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user') };
 
-    // const data = { email: email, password: password, role: (role.ngo ? 'ngo' : 'user') };
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json());
 
-    // const response = await fetch('/api/auth/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // }).then(res => res.json());
+    const user = {
+      authtoken: response.authtoken,
+      role: role
+    }
 
-    // if (response.status === 'success') {
-    //   if (data.role === 'ngo') {
-    //     navigate("/ngodashboard");
-    //   } else {
-    //     navigate("/userdashboard");
-    //   }
-    // } else {
-    //   console.log(response);
-    //   navigate("/");
-    // }
+    if (response.status === 'success') {
+      localStorage.setItem(user)
+      if (role.ngo) {
+        navigate("/dashboard")
+      } else {
+        navigate("/userDashboard")
+      }
+    } else {
+      console.log(response);
+      navigate("/");
+    }
   };
 
-
   const handleChange = (e) => {
-    if (e.target.name == 'email') {
+    if (e.target.name === 'email') {
       setEmail(e.target.value)
     }
-    else if (e.target.name == 'password') {
+    else if (e.target.name === 'password') {
       setPassword(e.target.value)
     }
-    else if (e.target.name == 'user') {
+    else if (e.target.name === 'user') {
       setRole({ ngo: false, user: true })
     }
-    else if (e.target.name == 'ngo') {
+    else if (e.target.name === 'ngo') {
       setRole({ ngo: true, user: false })
     }
   }
@@ -99,7 +104,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <a href="#" >Sign up</a>
+            Don’t have an account yet? <Link to="/signup">Sign up</Link>
           </p>
         </form>
       </div>

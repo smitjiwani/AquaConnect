@@ -1,5 +1,6 @@
 import React from 'react';
 import DashCard from '../components/DashCard';
+import "../styles/UserDashboard.css"
 
 
 const UserDashboard = () => {
@@ -22,9 +23,9 @@ const UserDashboard = () => {
   '5. Education and Training: Attend workshops or training sessions organized in the community to learn about sustainable water management. Share knowledge with others, especially with newer community members, to build a collective understanding.',]
 
   return (
-    <div className="">
-      <div>UserDashboard</div>
-      <div className="">
+    <div className="user__dashboard">
+      <h1>UserDashboard</h1>
+      <div className="dashboard__main">
         <DashCard title="Water Conservation" data={data1} />
         <DashCard title="Hygiene practices" data={data2} />
         <DashCard title="Community roles" data={data3} />
