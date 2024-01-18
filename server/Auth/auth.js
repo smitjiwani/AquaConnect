@@ -10,7 +10,7 @@ router.get('/login', (req, res) => {
 
 router.post('/register', async (req, res) => {
 
-  const { username, email, password, role, phone, address, location } = req.body;
+  const { username, email, password, role, phone, address } = req.body;
 
   try {
     let user;
@@ -20,9 +20,9 @@ router.post('/register', async (req, res) => {
     const secPass = await bcrypt.hash(password, salt);
 
     if (role === 'user') {
-      user = await db('users').insert({ name: username, email: email, password: secPass, phone: phone, location: location, address: address }).returning('*');
+      user = await db('users').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
     } else if (role === 'ngo') {
-      user = await db('ngos').insert({ name: username, email: email, password: secPass, phone: phone, location: location, address: address }).returning('*');
+      user = await db('ngos').insert({ username: username, email: email, password: secPass, phone: phone, address: address }).returning('*');
     }
     console.log(user)
 

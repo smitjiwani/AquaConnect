@@ -9,11 +9,11 @@
 
 .loginBox {
     background-color: white;
-    width: 24rem;
+    width: 22rem;
     height: 30rem;
     border-radius: 1.2rem;
     text-align: left;
-    padding: 3rem;
+    padding: 1rem;
 }
 
 .loginForm {
@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    /* padding: 3rem; */
 }
 
 .inputSection {
@@ -36,6 +35,13 @@
     align-items: flex-start;
 }
 
+.loginButton:hover {
+    width: 12rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: rgb(25, 114, 25);
+}
+
 .loginButton {
     width: 12rem;
     height: 2rem;
@@ -43,9 +49,6 @@
     background-color: rgb(101, 219, 101);
 }
 
-.loginButton :hover{
-    background-color: rgb(7, 60, 7);
-}
 
 .buttonContainer {
     display: flex;
@@ -62,9 +65,7 @@
 h2{
     padding: 2rem 0 2rem 0;
 }
-
 input {
-    border: 0.1rem solid black;
     border-radius: 0.5rem;
     padding: 0.2rem;
 }

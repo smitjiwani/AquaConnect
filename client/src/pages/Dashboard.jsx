@@ -9,12 +9,12 @@ function Dashboard() {
 
   const getWaterRequests = async () => {
     try {
-      const response = await fetch("/api/ngos");
+      const response = await fetch("http://localhost:5000/api/request");
       const jsonData = await response.json();
       setWaterRequests(jsonData);
       console.log(jsonData);
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
     }
   };
 
@@ -31,11 +31,11 @@ function Dashboard() {
 
           return (
             <WaterRequest
-              key={waterRequests.id}
+              key={waterRequests.req_id}
               location={waterRequests.location}
-              userCount='5'
-              userName='John Doe'
-              status='Pending'
+              userCount={waterRequests.n_people}
+              userName={waterRequests.username}
+              status={waterRequests.status}
             />
           )
         })}
