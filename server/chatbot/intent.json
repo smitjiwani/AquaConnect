@@ -24,6 +24,26 @@
             "context_set": ""
         },
         {
+            "tag": "query_resolution",
+            "patterns": [
+                "Can you help me with something?",
+                "I have a question",
+                "I need information",
+                "Can you assist me?",
+                "I'm looking for help"
+            ],
+            "responses": [
+                "Of course! Feel free to ask your question, and I'll do my best to help you.",
+                "Sure, I'm here to assist you. What do you need help with?",
+                "Certainly! Let me know what information you're looking for, and I'll provide assistance."
+            ],
+            "queries": [
+                "How can I contact an NGO?",
+                "Who are you?"
+            ],
+            "context_set": ""
+        },
+        {
             "tag": "goodbye",
             "patterns": [
                 "Goodbye",

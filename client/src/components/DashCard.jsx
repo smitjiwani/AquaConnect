@@ -1,23 +1,17 @@
-import React from 'react';
-import './styles/DashCard.css';
+import React from 'react'
+import './styles/WaterRequest.css'
 
 const DashCard = (props) => {
-  const paras = []; 
+  const paras = []
   for (let i = 0; i < props.data.length; i++) {
-    paras.push(
-      <p key={i}>
-        {props.data[i]}
-      </p>,
-    );
+    paras.push(<p key={i}>{props.data[i]}</p>)
   }
   return (
     <div className="Dashcard">
-      <div>
-        {props.title}:
-      </div>
+      <div>{props.title}:</div>
       <div>{paras}</div>
     </div>
-  );
-};
+  )
+}
 
-export default DashCard;
+export default DashCard

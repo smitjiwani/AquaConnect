@@ -12,6 +12,7 @@ import ngo from './Ngo/routes.js'
 import user from './User/routes.js'
 import issue from './Issue/routes.js'
 import request from './Request/routes.js'
+import chatbot from './chatbot/routes.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -31,6 +32,7 @@ app.use('/api/ngo', ngo)
 app.use('/api/user', user)
 app.use('/api/issue', issue)
 app.use('/api/request', request)
+app.use('/api/chatbot', chatbot)
 
 app.get('/', (req, res) => {
   res.send('Hello from homepage')
