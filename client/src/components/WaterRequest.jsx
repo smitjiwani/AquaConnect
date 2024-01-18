@@ -1,19 +1,16 @@
-import React from 'react'
-import './styles/WaterRequest.css'
+import React from 'react';
+import './styles/WaterRequest.css';
 
 const WaterRequest = (props) => {
   return (
-    <div className='card'>
-    <div className='requestCard'>
-        <h2>Location: {props.location}</h2>
-        <p>For People: {props.userCount}</p>
-        <span>By: {props.username}</span>
-        <span>Status: {props.status}</span>
-        <span> Ngo: {props.ngo}</span>
-    </div>
-    
-    </div>
-  )
+    <tr className='table-row'>
+      <td className='table-cell'>{props.location}</td>
+      <td className='table-cell'>{props.userCount}</td>
+      <td className='table-cell'>{props.userName}</td>
+      <td className='table-cell'>{props.status}</td>
+      <td className='table-cell'>{props.ngo}</td>
+    </tr>
+  );
 }
 
-export default WaterRequest
+export default WaterRequest;

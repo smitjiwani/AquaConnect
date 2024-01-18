@@ -5,7 +5,6 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 function NewRequest() {
-    const [userId, setUserId] = useState('');
     const [username, setUsername] = useState('');
     const [numberOfPeople, setNumberOfPeople] = useState('');
     const [location, setLocation] = useState('');
@@ -116,11 +115,61 @@ function NewRequest() {
                 </label>
                 <br />
                 <label className="form-label">
-                    Location:
+                    Address Line 1:
                     <input
                         type="text"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        value={addressLine1}
+                        onChange={(e) => setAddressLine1(e.target.value)}
+                        className="form-input"
+                    />
+                </label>
+                <br />
+                <label className="form-label">
+                    Address Line 2:
+                    <input
+                        type="text"
+                        value={addressLine2}
+                        onChange={(e) => setAddressLine2(e.target.value)}
+                        className="form-input"
+                    />
+                </label>
+                <br />
+                <label className="form-label">
+                    City:
+                    <input
+                        type="text"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        className="form-input"
+                    />
+                </label>
+                <br />
+                <label className="form-label">
+                    State:
+                    <input
+                        type="text"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        className="form-input"
+                    />
+                </label>
+                <br />
+                <label className="form-label">
+                    Postal Code:
+                    <input
+                        type="text"
+                        value={postalCode}
+                        onChange={(e) => setPostalCode(e.target.value)}
+                        className="form-input"
+                    />
+                </label>
+                <br />
+                <label className="form-label">
+                    Country:
+                    <input
+                        type="text"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                         className="form-input"
                     />
                 </label>
