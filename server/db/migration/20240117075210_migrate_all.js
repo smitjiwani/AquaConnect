@@ -41,17 +41,30 @@ const dropAndCreateTables = async () => {
         table.timestamps(true, true)
       })
 
+    await db.schema.withSchema('public').createTable('verification_officer', (table) => {
+        table.uuid('officer_id').primary().defaultTo(db.fn.uuid())
+        table.string('username').notNullable()
+        table.string('email').notNullable().unique()
+        table.string('password').notNullable()
+        table.timestamps(true, true)
+      })  
+
     await db.schema.withSchema('public').createTable('requests', (table) => {
       table.uuid('req_id').primary().defaultTo(db.fn.uuid())
       table.integer('n_people').notNullable()
       table.uuid('user_id')
       table.uuid('ngo_id')
+      table.uuid('officer_id')
       table.string('status').notNullable().defaultTo('pending')
       table.string('username').notNullable()
       table.foreign('user_id').references('users.user_id')
       table.foreign('ngo_id').references('ngos.ngo_id')
+      table.foreign('officer_id').references('verification_officer.officer_id')
+      table
       table.timestamps(true, true)
     })
+
+   
     console.log('Tables dropped and created successfully!')
     process.exit(0)
   } catch (err) {
