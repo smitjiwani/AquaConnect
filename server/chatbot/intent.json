@@ -1,0 +1,44 @@
+{
+    "intents": [
+        {
+            "tag": "primary greetings",
+            "patterns": [
+                "Hello",
+                "Hi",
+                "Hey",
+                "Good morning",
+                "Good afternoon",
+                "Good evening",
+                "Yo",
+                "How have you been",
+                "What's up",
+                "How are you doing",
+                "It's good to see you"
+            ],
+            "responses": [
+                "Hello! How can I assist you today?",
+                "Hi there! How can I help you?",
+                "Hey! What can I do for you?",
+                "Good day! How may I assist you?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Goodbye",
+                "See you later",
+                "Bye",
+                "Farewell",
+                "Take care"
+            ],
+            "responses": [
+                "Goodbye! If you have more questions, feel free to ask.",
+                "See you later! Don't hesitate to return if you need assistance.",
+                "Bye for now! Have a great day.",
+                "Farewell! If you need any information, just ask."
+            ],
+            "context_set": ""
+        }
+    ]
+ }        
