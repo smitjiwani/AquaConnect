@@ -2,11 +2,13 @@ import db from '../db.js'
 
 const dropAndCreateTables = async () => {
   try {
+    await db.schema.dropTableIfExists('feedback')
     await db.schema.dropTableIfExists('requests')
     await db.schema.dropTableIfExists('issue_status')
     await db.schema.dropTableIfExists('users')
     await db.schema.dropTableIfExists('ngos')
     await db.schema.dropTableIfExists('verification_officer')
+    
 
     await db.schema.withSchema('public').createTable('users', (table) => {
       table.uuid('user_id').primary().defaultTo(db.fn.uuid())
@@ -68,7 +70,21 @@ const dropAndCreateTables = async () => {
       table.timestamps(true, true)
     })
 
-   
+    await db.schema.withSchema('public').createTable('feedback', (table) => {
+      table.uuid('feedback_id').primary().defaultTo(db.fn.uuid())
+      table.string('rubric_1')
+      table.string('rubric_2')
+      table.string('rubric_3')
+      table.string('rubric_4')
+      table.uuid('user_id')
+      table.uuid('ngo_id')
+      table.uuid('req_id')
+      table.foreign('user_id').references('users.user_id')
+      table.foreign('ngo_id').references('ngos.ngo_id')
+      table.foreign('req_id').references('requests.req_id')
+      table.timestamps(true, true)
+    })  
+  
     console.log('Tables dropped and created successfully!')
     process.exit(0)
   } catch (err) {
