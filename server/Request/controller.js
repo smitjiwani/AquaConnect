@@ -25,13 +25,15 @@ export const getRequestById = async (req, res) => {
 }
 
 export const createRequests = async (req, res) => {
-  const { username, n_people } = req.body
+  const { username, n_people, location, latitude, longitude } = req.body
+
+
   try {
     const requests = await db('requests')
-      .insert({ username: username, n_people: n_people })
+      .insert({ username: username, n_people: n_people, longitude: longitude, latitude: latitude, location: location })
       .returning('*')
     console.log(requests)
-    res.status(201).json(requests)
+    res.status(201).json({status: 'success'})
   } catch (error) {
     console.error('Registration error:', error)
     res.status(500).json({ error: 'Server error' })

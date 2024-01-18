@@ -53,6 +53,9 @@ const dropAndCreateTables = async () => {
     await db.schema.withSchema('public').createTable('requests', (table) => {
       table.uuid('req_id').primary().defaultTo(db.fn.uuid())
       table.integer('n_people').notNullable()
+      table.float('latitude').notNullable()
+      table.float('longitude').notNullable()
+      table.string('location').notNullable()
       table.uuid('user_id')
       table.uuid('ngo_id')
       table.uuid('officer_id')

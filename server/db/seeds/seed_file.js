@@ -138,6 +138,9 @@ const seed = async () => {
     await db('requests').insert({
       req_id: uuidv4(),
       n_people: 30,
+      latitude: 23.23,
+      longitude: 52.15,
+      location: 'satara',
       ngo_id: ngoID1,
       user_id: userID1,
       officer_id: officerID1,

@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 const GoogleTranslateWidget = () => {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     script.async = true;
 
-    const onLoad = () => {
+    const onLoad = async () => {
       if (window.google && window.google.translate && window.google.translate.TranslateElement) {
         new window.google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
       } else {
@@ -26,6 +26,8 @@ const GoogleTranslateWidget = () => {
     const timeoutId = setTimeout(() => {
       onLoad();
     }, 1000);
+
+    // onLoad()
 
     return () => {
       // Cleanup: remove the script and clear the timeout when the component is unmounted
